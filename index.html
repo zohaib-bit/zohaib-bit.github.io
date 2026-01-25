@@ -6,6 +6,7 @@
     <meta name="description" content="Zohaib Faisal - Junior iOS Developer Portfolio">
     <title>Zohaib Faisal - Junior iOS Developer</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,17 +16,22 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">Zohaib Faisal</div>
-            <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-right">
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </nav>
@@ -184,26 +190,47 @@
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <p class="contact-description">
-                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
-                </p>
-                <div class="contact-methods">
-                    <a href="mailto:zohaibfaisalo9tech@gmail.com" class="contact-card">
-                        <div class="contact-icon">📧</div>
-                        <h3>Email</h3>
-                        <p>zohaibfaisalo9tech@gmail.com</p>
+            <div class="contact-grid">
+                <div class="contact-info-card">
+                    <h3 class="contact-card-title">Contact information</h3>
+                    <a href="mailto:zohaibfaisalo9tech@gmail.com" class="contact-info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>zohaibfaisalo9tech@gmail.com</span>
                     </a>
-                    <a href="https://github.com/zohaib-bit" target="_blank" class="contact-card">
-                        <div class="contact-icon">💼</div>
-                        <h3>GitHub</h3>
-                        <p>github.com/zohaib-bit</p>
-                    </a>
-                    <a href="https://www.linkedin.com/in/zohaib-faisal-621752268/" target="_blank" class="contact-card">
-                        <div class="contact-icon">🔗</div>
-                        <h3>LinkedIn</h3>
-                        <p>linkedin.com/in/zohaib-faisal</p>
-                    </a>
+                    <div class="contact-info-item">
+                        <i class="fas fa-phone"></i>
+                        <span class="contact-placeholder">Your phone number</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span class="contact-placeholder">Your location</span>
+                    </div>
+                    <div class="availability-block">
+                        <h4>Availability</h4>
+                        <p>I'm open to full-time positions, freelance projects, and consulting opportunities. I ensure prompt communication with a response time of under 24 hours.</p>
+                        <div class="availability-grid">
+                            <div class="availability-day"><span>Mon</span><i class="fas fa-check"></i></div>
+                            <div class="availability-day"><span>Tue</span><i class="fas fa-check"></i></div>
+                            <div class="availability-day"><span>Wed</span><i class="fas fa-check"></i></div>
+                            <div class="availability-day"><span>Thu</span><i class="fas fa-check"></i></div>
+                            <div class="availability-day"><span>Fri</span><i class="fas fa-check"></i></div>
+                            <div class="availability-day unavailable"><span>Sat</span><i class="fas fa-minus"></i></div>
+                            <div class="availability-day unavailable"><span>Sun</span><i class="fas fa-minus"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-card">
+                    <h3 class="contact-card-title">Send Message</h3>
+                    <form class="contact-form" id="contactForm" action="#" method="post">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="text" name="subject" placeholder="Subject" required>
+                        <textarea name="message" placeholder="Message" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-send">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -212,7 +239,34 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Zohaib Faisal. All rights reserved.</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 class="footer-name">Zohaib Faisal</h3>
+                    <p>Creating innovative iOS applications with a focus on beautiful design and exceptional user experience.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Navigation</h4>
+                        <a href="#home">Home</a>
+                        <a href="#projects">Projects</a>
+                        <a href="#skills">Skills</a>
+                        <a href="#about">About</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Services</h4>
+                        <a href="#skills">iOS Development</a>
+                        <a href="#skills">UI/UX Design</a>
+                        <a href="#about">App Architecture</a>
+                        <a href="#contact">Consultation</a>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><a href="mailto:zohaibfaisalo9tech@gmail.com">zohaibfaisalo9tech@gmail.com</a></p>
+                    <p><span class="contact-placeholder">Your phone</span></p>
+                    <p><span class="contact-placeholder">Your location</span></p>
+                </div>
+            </div>
         </div>
     </footer>
 
