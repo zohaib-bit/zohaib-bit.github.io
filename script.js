@@ -1,141 +1,295 @@
-// Mobile Navigation Toggle
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+import React from "https://esm.sh/react@18.3.1";
+import { createRoot } from "https://esm.sh/react-dom@18.3.1/client";
+import htm from "https://esm.sh/htm@3.1.1";
 
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    hamburger.classList.toggle('active');
-});
+const html = htm.bind(React.createElement);
+const { useEffect } = React;
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-    });
-});
-
-// Smooth Scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    const href = anchor.getAttribute('href');
-    if (href === '#') return;
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-            target.scrollIntoView({
-                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Navbar: shadow on scroll + hide on scroll down, show on scroll up
-const navbar = document.querySelector('.navbar');
-let lastScroll = 0;
-const scrollThreshold = 80;
-const hideThreshold = 120;
-
-function getPrefersReducedMotion() {
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-}
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    const scrollingDown = currentScroll > lastScroll;
-
-    if (currentScroll > scrollThreshold) {
-        navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
-    } else {
-        navbar.style.boxShadow = 'none';
+const services = [
+    {
+        title: "IOS APP DEVELOPMENT",
+        desc: "Design and development of high-performance iOS applications with scalable architecture and polished user experiences.",
+        stack: "SwiftUI · UIKit · Swift"
+    },
+    {
+        title: "PRODUCT ENGINEERING",
+        desc: "End-to-end product development from architecture to shipping, focused on maintainability and growth.",
+        stack: "MVVM · APIs · Modular Code"
+    },
+    {
+        title: "AI INTEGRATIONS",
+        desc: "Practical AI features for iOS products including assistants, recommendations, and workflow automation.",
+        stack: "OpenAI · RAG · Automation"
     }
+];
 
-    if (!getPrefersReducedMotion() && currentScroll > hideThreshold) {
-        if (scrollingDown && !document.querySelector('.nav-menu.active')) {
-            navbar.classList.add('navbar-hidden');
-        } else {
-            navbar.classList.remove('navbar-hidden');
-        }
-    }
+const phases = [
+    ["01", "Clarity & Product Thinking", "I define product goals, user flows, and architecture scope before writing code."],
+    ["02", "Architecture Design", "I design a clean system structure for performance, scaling, and easy iteration."],
+    ["03", "Product Development", "I build production-ready iOS features with clean code and reusable components."],
+    ["04", "Testing & Optimization", "I test flows, polish UX details, and optimize app responsiveness before release."],
+    ["05", "Launch & Improvement", "After launch, I improve features and app quality based on user feedback."]
+];
 
-    lastScroll = currentScroll;
-}, { passive: true });
+const projects = [
+    ["FocusFlow", "AI task planner built with SwiftUI and local-first architecture for productivity workflows."],
+    ["BlockApp", "Screen-time management app using NFC and iOS controls for focused digital habits."],
+    ["Votari", "Secure voting app with identity verification and clean, trust-focused user journeys."]
+];
 
-// Intersection Observer for scroll-triggered animations
-const observerOptions = {
-    threshold: 0.08,
-    rootMargin: '0px 0px -40px 0px'
-};
+const faqs = [
+    ["How do you start a new iOS project?", "I begin with clarity: problem definition, app flow mapping, and architecture planning before coding."],
+    ["Do you work with early-stage startups?", "Yes, I work with both early-stage founders and established teams needing product improvement."],
+    ["How long does it take to build an MVP?", "Most MVPs take 3-6 weeks depending on scope, integrations, and product complexity."],
+    ["Can you integrate AI into existing apps?", "Yes, I can add practical AI features where they create real user value."],
+    ["What stack do you usually use?", "Swift, SwiftUI, UIKit, Firebase/Supabase, REST APIs, and scalable iOS architecture patterns."]
+];
 
-const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
+function Footer() {
+    return html`
+        <footer className="site-footer">
+            <div className="footer-inner">
+            <div className="footer-grid">
+                <div className="footer-brand footer-col">
+                    <h3>Zohaib Faisal</h3>
+                    <p>SaaS • AI Systems • Scalable Products</p>
+                </div>
+                <div className="footer-col">
+                    <h4>CONTACT</h4>
+                    <p>Lahore, Pakistan</p>
+                    <p>Working globally with founders</p>
+                    <p>zohaibfaisal836@gmail.com</p>
+                    <p className="accent-line">Start a project →</p>
+                    <p className="accent-line">Book a call →</p>
+                </div>
+                <div className="footer-col">
+                    <h4>AVAILABILITY</h4>
+                    <p><span className="green-dot"></span>Available for new projects</p>
+                    <p>Response time</p>
+                    <p>Within 24 hours</p>
+                    <p>Timezone</p>
+                    <p>PKT (GMT+5)</p>
+                </div>
+                <div className="footer-col">
+                    <h4>EXPLORE</h4>
+                    <p>Projects</p>
+                    <p>Services</p>
+                    <p>Process</p>
+                    <p>FAQ</p>
+                    <p>Contact</p>
+                </div>
+                <div className="footer-col">
+                    <h4>CONNECT</h4>
+                    <p><a href="#">LinkedIn</a></p>
+                    <p><a href="https://github.com/zohaib-bit" target="_blank" rel="noreferrer">GitHub</a></p>
+                    <p><a href="#">Upwork</a></p>
+                </div>
+            </div>
+            <div className="footer-bottom">
+                <p>© ${new Date().getFullYear()} Zohaib Faisal — Building production-ready iOS experiences.</p>
+                <div className="footer-bottom-links">
+                    <a href="#">LINKEDIN</a>
+                    <a href="https://github.com/zohaib-bit" target="_blank" rel="noreferrer">GITHUB</a>
+                    <a href="#">UPWORK</a>
+                </div>
+            </div>
+            </div>
+        </footer>
+    `;
+}
 
-document.querySelectorAll('section[id]').forEach(section => {
-    if (section.id === 'home') return;
-    sectionObserver.observe(section);
-});
+function FAQItem({ q, a, open, onToggle }) {
+    return html`
+        <article className="faq-item">
+            <button className="faq-trigger" onClick=${onToggle}>
+                <span>${q}</span>
+                <span>${open ? "−" : "+"}</span>
+            </button>
+            <div className=${`faq-answer ${open ? "open" : ""}`}>
+                <p>${a}</p>
+            </div>
+        </article>
+    `;
+}
 
-// Add active class to nav links on scroll
-const sections = document.querySelectorAll('section[id]');
+function App() {
+    const [openFAQ, setOpenFAQ] = React.useState(1);
 
-function activateNavLink() {
-    const scrollY = window.pageYOffset;
-
-    sections.forEach(section => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
-        const sectionId = section.getAttribute('id');
-        const navLink = document.querySelector(`.nav-menu a[href="#${sectionId}"]`);
-
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            document.querySelectorAll('.nav-menu a').forEach(link => {
-                link.classList.remove('active');
+    useEffect(() => {
+        const animatedItems = document.querySelectorAll("[data-reveal]");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                } else {
+                    entry.target.classList.remove("is-visible");
+                }
             });
-            if (navLink) {
-                navLink.classList.add('active');
-            }
-        }
-    });
+        }, { threshold: 0.18, rootMargin: "0px 0px -5% 0px" });
+
+        animatedItems.forEach((item) => observer.observe(item));
+        return () => observer.disconnect();
+    }, []);
+
+    return html`
+        <div className="page">
+            <header className="topbar">
+                <div className="container topbar-inner">
+                    <a className="brand brand-logo" href="#home">Z.</a>
+                    <button className="menu-icon" aria-label="menu">
+                        <span></span><span></span>
+                    </button>
+                </div>
+            </header>
+
+            <section id="home" className="hero">
+                <div className="hero-image-wrap">
+                    <img src="profile-photo.png" alt="Zohaib Faisal" className="hero-image" />
+                </div>
+            </section>
+
+            <main className="white-surface">
+                <section className="section intro">
+                    <div className="container intro-grid">
+                        <div className="mosaic reveal" data-reveal>
+                            <span></span><span></span><span></span>
+                            <span></span><span></span><span></span>
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div className="reveal" data-reveal>
+                            <p className="section-label dark">(01)</p>
+                            <p className="mini-label">HOW I HELP FOUNDERS</p>
+                            <h1 className="dark-title">
+                                I’m Zohaib Faisal — an iOS engineer helping founders turn early ideas into
+                                clear, scalable products.
+                            </h1>
+                            <a className="inline-link" href="#services">START WITH CLARITY</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="services" className="section">
+                    <div className="container">
+                        <div className="section-head reveal" data-reveal>
+                            <p className="mini-label">SERVICES</p>
+                            <p className="section-label dark">(02)</p>
+                        </div>
+                        <div className="services-head reveal" data-reveal>
+                            <h2 className="dark-h2">Engineering Scalable Digital Products</h2>
+                            <p>I design and build scalable software systems from mobile apps to AI-assisted features and production architecture.</p>
+                        </div>
+                        <div className="services-stack">
+                            ${services.map((service, index) => html`
+                                <article className="service-card reveal" data-reveal style=${{ transitionDelay: `${index * 0.08}s` }} key=${service.title}>
+                                    <p className="service-kicker">Services</p>
+                                    <h3>${service.title}</h3>
+                                    <p>${service.desc}</p>
+                                    <span>${service.stack}</span>
+                                </article>
+                            `)}
+                        </div>
+                    </div>
+                </section>
+
+                <section id="process" className="section process-bg">
+                    <div className="container">
+                        <div className="process-list">
+                            ${phases.map(([num, title, desc], index) => html`
+                                <article className="phase-row reveal" data-reveal style=${{ transitionDelay: `${index * 0.05}s` }} key=${num}>
+                                    <div className="phase-text">
+                                        <p className="phase-num">PHASE ${num}</p>
+                                        <h3>${title}</h3>
+                                        <p>${desc}</p>
+                                        <ul>
+                                            <li>System planning</li>
+                                            <li>Execution with quality</li>
+                                            <li>Scalable architecture</li>
+                                        </ul>
+                                    </div>
+                                    <div className="phase-image"></div>
+                                </article>
+                            `)}
+                        </div>
+                    </div>
+                </section>
+
+                <section id="projects" className="section">
+                    <div className="container">
+                        <h2 className="dark-h2 center reveal" data-reveal>From MVP to production — done right.</h2>
+                        <p className="center-sub reveal" data-reveal>Strategy → build → launch → iterate. One owner, clear execution, measurable progress.</p>
+                        <div className="grid-3">
+                            ${projects.map(([title, desc], index) => html`
+                                <article className="plan-card reveal" data-reveal style=${{ transitionDelay: `${index * 0.08}s` }} key=${title}>
+                                    <p className="plan-top">${index === 0 ? "NOW" : index === 1 ? "1-2 DAYS" : "KICKOFF"}</p>
+                                    <h3>${title}</h3>
+                                    <p>${desc}</p>
+                                    ${index === 0 ? html`<a className="plan-btn" href="#contact">Book an intro call</a>` : null}
+                                </article>
+                            `)}
+                        </div>
+                    </div>
+                </section>
+
+                <section className="testimonials-block">
+                    <div className="container">
+                        <p className="mini-label center-light">REAL WORDS. REAL RESULTS.</p>
+                        <h2 className="faq-title reveal" data-reveal>What founders say after we ship</h2>
+                        <p className="testimonials-sub reveal" data-reveal>
+                            Clear communication, on-time delivery, clean execution without drama.
+                        </p>
+                        <article className="testimonial-card reveal" data-reveal>
+                            <div className="testimonial-image"></div>
+                            <div className="testimonial-content">
+                                <p>
+                                    "Zohaib delivers exactly what he promises — on time, high quality, and without
+                                    errors. A rare find. Will rehire and recommend without hesitation."
+                                </p>
+                                <div className="testimonial-meta">
+                                    <span>Upwork Client</span>
+                                    <span>Founder · iOS Product</span>
+                                </div>
+                            </div>
+                        </article>
+                        <div className="testimonial-dots">
+                            <span className="active"></span><span></span><span></span>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="faq-block">
+                    <div className="container">
+                        <h2 className="faq-title reveal" data-reveal>Questions founders usually ask</h2>
+                        <div className="faq-list reveal" data-reveal>
+                            ${faqs.map(([q, a], i) => html`
+                                <${FAQItem}
+                                    q=${q}
+                                    a=${a}
+                                    open=${openFAQ === i}
+                                    onToggle=${() => setOpenFAQ(openFAQ === i ? -1 : i)}
+                                />
+                            `)}
+                        </div>
+                    </div>
+                </section>
+
+                <section id="contact" className="cta-block">
+                    <div className="container cta-inner reveal" data-reveal>
+                        <p className="mini-label center-light">READY TO BUILD?</p>
+                        <h2>Have an idea you want to turn into a real product?</h2>
+                        <p>Let's talk. I'll review your concept and outline the cleanest path forward.</p>
+                        <a className="cta-btn" href="mailto:zohaibfaisal836@gmail.com">Start a conversation ↗</a>
+                    </div>
+                </section>
+            </main>
+
+            <div className="footer-shell">
+                <${Footer} />
+            </div>
+        </div>
+    `;
 }
 
-window.addEventListener('scroll', activateNavLink);
-
-// Contact form - mailto fallback
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const name = contactForm.name.value;
-        const email = contactForm.email.value;
-        const subject = contactForm.subject.value;
-        const message = contactForm.message.value;
-        const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-        const mailto = `mailto:zohaibfaisalo9tech@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.location.href = mailto;
-    });
-}
-
-// Theme toggle (dark/light mode)
-const themeToggle = document.getElementById('themeToggle');
-if (themeToggle) {
-    const stored = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const isDark = stored === 'dark' || (!stored && prefersDark);
-    if (isDark) document.body.classList.add('dark-mode');
-    const setIcon = () => {
-        const icon = themeToggle.querySelector('i');
-        if (icon) icon.className = document.body.classList.contains('dark-mode') ? 'fas fa-moon' : 'fas fa-sun';
-    };
-    setIcon();
-    themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-        setIcon();
-    });
+const rootElement = document.getElementById("root");
+if (rootElement) {
+    createRoot(rootElement).render(html`<${App} />`);
 }
