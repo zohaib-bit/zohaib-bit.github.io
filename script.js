@@ -255,8 +255,23 @@ function App() {
             </header>
 
             <section id="home" className="hero">
-                <div className="hero-image-wrap">
-                    <img src="profile-photo.png" alt="Zohaib Faisal" className="hero-image" />
+                <div className="container hero-inner">
+                    <div className="hero-copy reveal is-visible">
+                        <p className="hero-eyebrow">iOS Engineer · Product Builder</p>
+                        <h1 className="hero-tagline">
+                            I turn founder ideas into polished, production-ready iOS products.
+                        </h1>
+                        <p className="hero-lead">
+                            SwiftUI, UIKit, and AI integrations — from MVP to App Store launch.
+                        </p>
+                        <a className="hero-cta" href="#contact">
+                            <span>Start a project</span>
+                            <span className="hero-cta-arrow" aria-hidden="true">↗</span>
+                        </a>
+                    </div>
+                    <div className="hero-image-wrap reveal is-visible">
+                        <img src="profile-photo.png" alt="Zohaib Faisal" className="hero-image" />
+                    </div>
                 </div>
             </section>
 

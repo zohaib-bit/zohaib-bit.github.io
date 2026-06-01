@@ -29,6 +29,10 @@ a { color: inherit; text-decoration: none; }
     right: 0;
     z-index: 30;
     padding: 1rem 0;
+    background: rgba(5, 5, 5, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .topbar-inner { display: flex; justify-content: space-between; align-items: center; }
@@ -52,24 +56,130 @@ a { color: inherit; text-decoration: none; }
 .menu-icon span { height: 1px; width: 100%; background: #ccc; display: block; }
 
 .hero {
-    min-height: 72vh;
+    min-height: 88vh;
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding: 6rem 0 0;
+    align-items: center;
+    padding: 7rem 0 3rem;
+}
+
+.hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+}
+
+.hero-copy {
+    max-width: 34rem;
+}
+
+.hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin-bottom: 1.25rem;
+}
+
+.hero-tagline {
+    font-size: clamp(2rem, 4.2vw, 3.35rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero-lead {
+    color: #a3a3a3;
+    line-height: 1.7;
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    margin-bottom: 2rem;
+    max-width: 32ch;
+}
+
+.hero-cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.9rem 1.35rem;
+    border-radius: 999px;
+    background: #f5f5f5;
+    color: #111;
+    font-size: 0.9rem;
+    font-weight: 600;
+    overflow: hidden;
+    isolation: isolate;
+    animation: hero-cta-glow 2.8s ease-in-out infinite;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.hero-cta::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(120deg, #5ddb77, #fff, #5ddb77, #fff);
+    background-size: 300% 300%;
+    z-index: -2;
+    animation: hero-cta-shimmer 4s linear infinite;
+}
+
+.hero-cta::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border-radius: inherit;
+    background: #f5f5f5;
+    z-index: -1;
+}
+
+.hero-cta:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: #fff;
+}
+
+.hero-cta:hover::after {
+    background: #fff;
+}
+
+.hero-cta-arrow {
+    display: inline-block;
+    animation: hero-cta-bounce 1.6s ease-in-out infinite;
+}
+
+@keyframes hero-cta-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(93, 219, 119, 0.35); }
+    50% { box-shadow: 0 0 0 10px rgba(93, 219, 119, 0); }
+}
+
+@keyframes hero-cta-shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+@keyframes hero-cta-bounce {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(2px, -3px); }
 }
 
 .hero-image-wrap {
-    width: min(480px, 52vw);
-    height: min(560px, 62vh);
-    overflow: visible;
+    width: 100%;
+    max-width: 440px;
+    margin-left: auto;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .hero-image {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    object-position: center bottom;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 18px;
     filter: none;
 }
 
@@ -736,8 +846,14 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (max-width: 760px) {
-    .hero { min-height: 58vh; }
-    .hero-image-wrap { width: min(420px, 72vw); height: min(420px, 72vw); }
+    .hero { min-height: auto; padding: 6.5rem 0 2.5rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-copy { max-width: none; text-align: center; margin: 0 auto; }
+    .hero-lead { margin-inline: auto; }
+    .hero-image-wrap {
+        max-width: min(360px, 88vw);
+        margin-inline: auto;
+    }
     .section { padding: 3.7rem 0; }
     .dark-title, .dark-h2, .cta-inner h2 { max-width: none; }
     .footer-bottom { flex-direction: column; }
