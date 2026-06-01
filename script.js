@@ -32,9 +32,54 @@ const phases = [
 ];
 
 const projects = [
-    ["FocusFlow", "AI task planner built with SwiftUI and local-first architecture for productivity workflows."],
-    ["BlockApp", "Screen-time management app using NFC and iOS controls for focused digital habits."],
-    ["Votari", "Secure voting app with identity verification and clean, trust-focused user journeys."]
+    {
+        title: "FoodNinja",
+        tagline: "A full-featured food delivery experience built for speed and clarity.",
+        desc: "FoodNinja is a native iOS food delivery app built with UIKit, featuring dynamic order number generation, real-time food listing, and a smooth browsing experience. Designed with clean architecture and a user-first interface that mirrors production-grade delivery apps.",
+        tech: ["UIKit", "Dynamic Order Generation", "Food Listing UI", "MVC Architecture"],
+        color: "#22c55e",
+        image: "projects/foodninja.png"
+    },
+    {
+        title: "FocusFlow Mini",
+        tagline: "Write a thought. AI turns it into a task — instantly.",
+        desc: "FocusFlow Mini is an AI-powered productivity app built with SwiftUI and the OpenAI API. Users simply write a thought in natural language and the app automatically structures it into an actionable task — no manual input needed. Paired with fluid animations that make the experience feel effortless and responsive.",
+        tech: ["SwiftUI", "OpenAI API", "Auto Task Generation", "Custom Animations"],
+        color: "#0d9488",
+        image: "projects/focusflow-mini.png"
+    },
+    {
+        title: "Overview",
+        tagline: "A minimal task and reminder app that keeps you on track.",
+        desc: "Overview is a clean, distraction-free task management app built in SwiftUI. Focused entirely on helping users capture, organize, and get reminded of what matters most. Built with simplicity as a feature — no clutter, just clarity.",
+        tech: ["SwiftUI", "Local Notifications", "Task Management", "Reminders"],
+        color: "#b45309",
+        image: "projects/overview.png"
+    },
+    {
+        title: "BlockApp",
+        tagline: "Real device-level blocking — with streaks to keep you honest.",
+        desc: "BlockApp is a Screen Time management app built with SwiftUI and Apple's ScreenTime API that enforces actual device-level app blocking. Features NFC-based functionality, full German localization, and a streak system that gamifies consistency. Built for users who want digital discipline that actually sticks.",
+        tech: ["SwiftUI", "ScreenTime API", "NFC", "German Localization", "Streak System"],
+        color: "#dc2626",
+        image: "projects/blockapp.png"
+    },
+    {
+        title: "Votari",
+        tagline: "Secure, verifiable elections on the blockchain — powered by NFC.",
+        desc: "Votari is a blockchain-based e-election iOS app built with SwiftUI. Voters authenticate by scanning their passport via NFC, ensuring identity verification at the hardware level. Election results are processed through a Merkle root structure, making every vote cryptographically tamper-proof and transparent.",
+        tech: ["SwiftUI", "Blockchain", "NFC Passport Reading", "Merkle Root", "Election Infrastructure"],
+        color: "#1d4ed8",
+        image: "projects/votari.png"
+    },
+    {
+        title: "AppBlocker",
+        tagline: "Block apps. Track habits. Own your screen time.",
+        desc: "AppBlocker is a production-grade Screen Time management app built with SwiftUI and Apple's ScreenTime API. It goes beyond basic blocking — users can restrict apps based on time schedules, usage limits, location, and open count limits. The app also surfaces detailed insights into daily, weekly, and monthly usage patterns, giving users real data to build healthier digital habits.",
+        tech: ["SwiftUI", "ScreenTime API", "FamilyControls", "DeviceActivity", "Schedule Blocking", "Usage Insights", "Location-Based Blocking"],
+        color: "#3b82f6",
+        image: "projects/appblocker.png"
+    }
 ];
 
 const faqs = [
@@ -215,15 +260,39 @@ function App() {
 
                 <section id="projects" className="section">
                     <div className="container">
-                        <h2 className="dark-h2 center reveal" data-reveal>From MVP to production — done right.</h2>
-                        <p className="center-sub reveal" data-reveal>Strategy → build → launch → iterate. One owner, clear execution, measurable progress.</p>
-                        <div className="grid-3">
-                            ${projects.map(([title, desc], index) => html`
-                                <article className="plan-card reveal" data-reveal style=${{ transitionDelay: `${index * 0.08}s` }} key=${title}>
-                                    <p className="plan-top">${index === 0 ? "NOW" : index === 1 ? "1-2 DAYS" : "KICKOFF"}</p>
-                                    <h3>${title}</h3>
-                                    <p>${desc}</p>
-                                    ${index === 0 ? html`<a className="plan-btn" href="#contact">Book an intro call</a>` : null}
+                        <div className="section-head reveal" data-reveal>
+                            <p className="mini-label">SELECTED WORK</p>
+                            <p className="section-label dark">(04)</p>
+                        </div>
+                        <h2 className="dark-h2 reveal" data-reveal>Apps shipped with production-grade execution.</h2>
+                        <p className="projects-sub reveal" data-reveal>
+                            Native iOS products — from food delivery and AI productivity to screen time and blockchain voting.
+                        </p>
+                        <div className="projects-grid">
+                            ${projects.map((project, index) => html`
+                                <article
+                                    className="project-card reveal"
+                                    data-reveal
+                                    style=${{
+                                        transitionDelay: `${index * 0.06}s`,
+                                        "--project-accent": project.color
+                                    }}
+                                    key=${project.title}
+                                >
+                                    <div className="project-card-image">
+                                        <img src=${project.image} alt=${`${project.title} app showcase`} loading="lazy" />
+                                    </div>
+                                    <div className="project-card-body">
+                                        <p className="project-index" style=${{ color: project.color }}>0${index + 1}</p>
+                                        <h3>${project.title}</h3>
+                                        <p className="project-tagline">${project.tagline}</p>
+                                        <p className="project-desc">${project.desc}</p>
+                                        <div className="project-tech">
+                                            ${project.tech.map((item) => html`
+                                                <span className="project-tech-tag" key=${item}>${item}</span>
+                                            `)}
+                                        </div>
+                                    </div>
                                 </article>
                             `)}
                         </div>

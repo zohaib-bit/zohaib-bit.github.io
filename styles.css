@@ -278,45 +278,95 @@ a { color: inherit; text-decoration: none; }
     color: #656565;
 }
 
-.grid-3 {
+.projects-sub {
+    max-width: 62ch;
+    margin: 1rem 0 2.5rem;
+    color: #656565;
+    line-height: 1.7;
+}
+
+.projects-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
 }
 
-.plan-card {
+.project-card {
     border: 1px solid #d6d6d6;
-    border-radius: 18px;
-    padding: 1.25rem;
-    background: #efefef;
-    min-height: 230px;
+    border-radius: 20px;
+    background: #f3f3f3;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
 }
 
-.plan-top {
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    color: #9b9b9b;
-    margin-bottom: 0.85rem;
-}
-
-.plan-card h3 {
-    font-size: clamp(1.35rem, 2.5vw, 1.85rem);
-    letter-spacing: -0.02em;
-    margin-bottom: 0.55rem;
-    line-height: 1.15;
-    word-break: break-word;
-}
-.plan-card p { color: #666; line-height: 1.7; font-size: 0.95rem; }
-
-.plan-btn {
-    margin-top: 1rem;
-    display: inline-block;
+.project-card-image {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
     background: #111;
-    color: #fff;
+}
+
+.project-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.project-card-body {
+    padding: 1.35rem 1.4rem 1.5rem;
+    border-top: 3px solid var(--project-accent, #111);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.project-index {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    margin-bottom: 0.45rem;
+}
+
+.project-card h3 {
+    font-size: clamp(1.25rem, 2vw, 1.65rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.4rem;
+    line-height: 1.15;
+}
+
+.project-tagline {
+    color: #333;
+    font-weight: 600;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-bottom: 0.65rem;
+}
+
+.project-desc {
+    color: #666;
+    line-height: 1.7;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.project-tech-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    padding: 0.35rem 0.65rem;
     border-radius: 999px;
-    padding: 0.65rem 1rem;
-    font-size: 0.83rem;
+    background: #e8e8e8;
+    color: #444;
+    border: 1px solid #d2d2d2;
 }
 
 .testimonials-block {
@@ -538,7 +588,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (max-width: 980px) {
-    .intro-grid, .services-head, .phase-row, .grid-3, .footer-grid { grid-template-columns: 1fr; }
+    .intro-grid, .services-head, .phase-row, .projects-grid, .footer-grid { grid-template-columns: 1fr; }
     .mosaic { display: none; }
     .testimonial-card { grid-template-columns: 1fr; }
     .testimonial-content p { font-size: 1.3rem; }
@@ -566,6 +616,6 @@ a { color: inherit; text-decoration: none; }
     .white-surface { border-radius: 0; }
     .testimonials-block { padding: 4rem 0 3.2rem; }
     .container, .footer-inner { width: calc(100vw - 28px); }
-    .plan-card { min-height: 0; }
-    .plan-card h3 { font-size: 1.2rem; }
+    .project-card-body { padding: 1.1rem 1rem 1.25rem; }
+    .project-card h3 { font-size: 1.2rem; }
 }
