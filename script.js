@@ -24,11 +24,78 @@ const services = [
 ];
 
 const phases = [
-    ["01", "Clarity & Product Thinking", "I define product goals, user flows, and architecture scope before writing code."],
-    ["02", "Architecture Design", "I design a clean system structure for performance, scaling, and easy iteration."],
-    ["03", "Product Development", "I build production-ready iOS features with clean code and reusable components."],
-    ["04", "Testing & Optimization", "I test flows, polish UX details, and optimize app responsiveness before release."],
-    ["05", "Launch & Improvement", "After launch, I improve features and app quality based on user feedback."]
+    {
+        num: "01",
+        title: "Clarity & Product Thinking",
+        desc: "I define product goals, user flows, and architecture scope before writing code.",
+        icon: "fa-lightbulb",
+        theme: "#d97706",
+        bullets: ["Product goals & scope", "User flow mapping", "Feature prioritization"],
+        visual: "clarity"
+    },
+    {
+        num: "02",
+        title: "Architecture Design",
+        desc: "I design a clean system structure for performance, scaling, and easy iteration.",
+        icon: "fa-sitemap",
+        theme: "#2563eb",
+        bullets: ["MVVM & modular layers", "API & data flow design", "Scalable structure"],
+        visual: "architecture"
+    },
+    {
+        num: "03",
+        title: "Product Development",
+        desc: "I build production-ready iOS features with clean code and reusable components.",
+        icon: "fa-mobile-screen",
+        theme: "#059669",
+        bullets: ["SwiftUI & UIKit builds", "Reusable components", "Clean implementation"],
+        visual: "development"
+    },
+    {
+        num: "04",
+        title: "Testing & Optimization",
+        desc: "I test flows, polish UX details, and optimize app responsiveness before release.",
+        icon: "fa-gauge-high",
+        theme: "#7c3aed",
+        bullets: ["Flow & edge-case testing", "UX polish & performance", "Pre-release QA"],
+        visual: "testing"
+    },
+    {
+        num: "05",
+        title: "Launch & Improvement",
+        desc: "After launch, I improve features and app quality based on user feedback.",
+        icon: "fa-rocket",
+        theme: "#dc2626",
+        bullets: ["App Store readiness", "Post-launch iteration", "Feedback-driven updates"],
+        visual: "launch"
+    }
+];
+
+const certifications = [
+    {
+        title: "AI Fluency: Framework & Foundations",
+        issuer: "Anthropic",
+        image: "certifications/ai-fluency.png",
+        url: "https://verify.skilljar.com/c/5hndrbnd6che"
+    },
+    {
+        title: "Claude Code 101",
+        issuer: "Anthropic",
+        image: "certifications/claude-code-101.png",
+        url: "https://verify.skilljar.com/c/nqdvto3x8biu"
+    },
+    {
+        title: "Claude Code in Action",
+        issuer: "Anthropic",
+        image: "certifications/claude-code-in-action.png",
+        url: "https://verify.skilljar.com/c/myk5u6fsg7e3"
+    },
+    {
+        title: "Claude with the Anthropic API",
+        issuer: "Anthropic",
+        image: "certifications/claude-anthropic-api.png",
+        url: "https://verify.skilljar.com/c/4rgwki8w5r7z"
+    }
 ];
 
 const projects = [
@@ -238,20 +305,44 @@ function App() {
 
                 <section id="process" className="section process-bg">
                     <div className="container">
+                        <div className="section-head reveal" data-reveal>
+                            <p className="mini-label">PROCESS</p>
+                            <p className="section-label dark">(03)</p>
+                        </div>
+                        <h2 className="dark-h2 reveal" data-reveal>How I take ideas from clarity to launch.</h2>
                         <div className="process-list">
-                            ${phases.map(([num, title, desc], index) => html`
-                                <article className="phase-row reveal" data-reveal style=${{ transitionDelay: `${index * 0.05}s` }} key=${num}>
+                            ${phases.map((phase, index) => html`
+                                <article className="phase-row reveal" data-reveal style=${{ transitionDelay: `${index * 0.05}s` }} key=${phase.num}>
+                                    <div
+                                        className=${`phase-visual phase-visual-${phase.visual}`}
+                                        style=${{ "--phase-theme": phase.theme }}
+                                    >
+                                        <div className="phase-visual-icon">
+                                            <i className=${`fa-solid ${phase.icon}`} aria-hidden="true"></i>
+                                        </div>
+                                        <div className="phase-visual-graphic" aria-hidden="true">
+                                            ${phase.visual === "clarity" ? html`
+                                                <span></span><span></span><span></span>
+                                            ` : phase.visual === "architecture" ? html`
+                                                <span></span><span></span><span></span><span></span>
+                                            ` : phase.visual === "development" ? html`
+                                                <span></span><span></span>
+                                            ` : phase.visual === "testing" ? html`
+                                                <span></span><span></span><span></span>
+                                            ` : html`
+                                                <span></span><span></span>
+                                            `}
+                                        </div>
+                                        <p className="phase-visual-label">PHASE ${phase.num}</p>
+                                    </div>
                                     <div className="phase-text">
-                                        <p className="phase-num">PHASE ${num}</p>
-                                        <h3>${title}</h3>
-                                        <p>${desc}</p>
+                                        <p className="phase-num">PHASE ${phase.num}</p>
+                                        <h3>${phase.title}</h3>
+                                        <p>${phase.desc}</p>
                                         <ul>
-                                            <li>System planning</li>
-                                            <li>Execution with quality</li>
-                                            <li>Scalable architecture</li>
+                                            ${phase.bullets.map((item) => html`<li key=${item}>${item}</li>`)}
                                         </ul>
                                     </div>
-                                    <div className="phase-image"></div>
                                 </article>
                             `)}
                         </div>
@@ -299,28 +390,35 @@ function App() {
                     </div>
                 </section>
 
-                <section className="testimonials-block">
+                <section id="certifications" className="section certifications-section">
                     <div className="container">
-                        <p className="mini-label center-light">REAL WORDS. REAL RESULTS.</p>
-                        <h2 className="faq-title reveal" data-reveal>What founders say after we ship</h2>
-                        <p className="testimonials-sub reveal" data-reveal>
-                            Clear communication, on-time delivery, clean execution without drama.
+                        <div className="section-head reveal" data-reveal>
+                            <p className="mini-label">CERTIFICATIONS</p>
+                            <p className="section-label dark">(05)</p>
+                        </div>
+                        <h2 className="dark-h2 reveal" data-reveal>Continuous learning in AI & modern tooling.</h2>
+                        <p className="certifications-sub reveal" data-reveal>
+                            Anthropic credentials in AI fluency, Claude Code, and API integration.
                         </p>
-                        <article className="testimonial-card reveal" data-reveal>
-                            <div className="testimonial-image"></div>
-                            <div className="testimonial-content">
-                                <p>
-                                    "Zohaib delivers exactly what he promises — on time, high quality, and without
-                                    errors. A rare find. Will rehire and recommend without hesitation."
-                                </p>
-                                <div className="testimonial-meta">
-                                    <span>Upwork Client</span>
-                                    <span>Founder · iOS Product</span>
-                                </div>
-                            </div>
-                        </article>
-                        <div className="testimonial-dots">
-                            <span className="active"></span><span></span><span></span>
+                        <div className="certifications-grid">
+                            ${certifications.map((cert, index) => html`
+                                <a
+                                    className="cert-card reveal"
+                                    data-reveal
+                                    href=${cert.url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    style=${{ transitionDelay: `${index * 0.05}s` }}
+                                    key=${cert.title}
+                                    title=${`Verify: ${cert.title}`}
+                                >
+                                    <img src=${cert.image} alt=${cert.title} loading="lazy" />
+                                    <div className="cert-card-caption">
+                                        <p>${cert.title}</p>
+                                        <span>${cert.issuer}</span>
+                                    </div>
+                                </a>
+                            `)}
                         </div>
                     </div>
                 </section>
